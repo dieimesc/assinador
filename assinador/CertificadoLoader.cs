@@ -50,7 +50,7 @@ namespace Signature.Certificate
 
             if (keyInfoX509.Certificates.Count == 0)
             {
-                throw new CertificateInfoException("Não foi possível validar o certificado do XMl enviado.");
+                //throw new CertificateInfoException("Não foi possível validar o certificado do XMl enviado.");
             }
 
             //buscar o certificado do KeyInfo
