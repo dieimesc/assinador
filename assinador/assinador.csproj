@@ -53,6 +53,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssinaturaDigital.cs" />
     <Compile Include="CertificadoInfo.cs" />
     <Compile Include="CertificadoLoader.cs" />
     <Compile Include="CodeFile1.cs" />

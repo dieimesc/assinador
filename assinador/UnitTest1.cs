@@ -12,7 +12,7 @@ namespace assinador
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public async System.Threading.Tasks.Task TestMethod1Async()
         {
             #region comentado
             //System.IO.StreamReader sr = new System.IO.StreamReader(@"C:\Users\James\desktop\teste assinatura.xml", false);
@@ -70,8 +70,24 @@ namespace assinador
 
             #endregion
 
-            AssinarXml(@"C:\Users\James\desktop\teste assinatura.xml", "EnviarLoteRpsEnvio", "LoteRps", xCert);
-            AssinarXml(@"C:\Users\James\desktop\teste assinatura.xml", "Rps", "InfRps", xCert);
+            //AssinarXml(@"C:\Users\James\desktop\teste assinatura.xml", "Rps", "InfRps", xCert);
+
+            AssinaturaDigital assinaturaDigital = new AssinaturaDigital();
+            System.IO.StreamReader sr = new System.IO.StreamReader(@"C:\Users\James\desktop\teste assinatura.xml", false);
+            string remessa = sr.ReadToEnd();
+
+            assinaturaDigital.Assinar(remessa,"InfRps", xCert);
+            assinaturaDigital.Assinar(assinaturaDigital.XMLStringAssinado, "LoteRps", xCert, "Rps");
+            
+                       
+            sr.Close();
+
+            StreamWriter sw = new StreamWriter(@"C:\Users\James\desktop\teste assinatura.xml");
+            await sw.WriteAsync(assinaturaDigital.XMLStringAssinado.ToCharArray());
+            sw.Close();
+
+           // AssinarXml(@"C:\Users\James\desktop\teste assinatura.xml", "EnviarLoteRpsEnvio", "LoteRps", xCert);
+            
 
 
 
